@@ -7,10 +7,8 @@ import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
-import java.util.Objects;
-
 @Entity
-public class Note implements Parcelable {
+public class Task implements Parcelable {
     @PrimaryKey(autoGenerate = true)
     public int id;
 
@@ -23,18 +21,18 @@ public class Note implements Parcelable {
     @ColumnInfo(name = "done")
     public boolean done;
 
-    public Note() {
+    public Task() {
     }
 
-    public static final Creator<Note> CREATOR = new Creator<Note>() {
+    public static final Creator<Task> CREATOR = new Creator<Task>() {
         @Override
-        public Note createFromParcel(Parcel in) {
-            return new Note(in);
+        public Task createFromParcel(Parcel in) {
+            return new Task(in);
         }
 
         @Override
-        public Note[] newArray(int size) {
-            return new Note[size];
+        public Task[] newArray(int size) {
+            return new Task[size];
         }
     };
 
@@ -43,7 +41,7 @@ public class Note implements Parcelable {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        Note note = (Note) o;
+        Task note = (Task) o;
 
         if (id != note.id) return false;
         if (timestamp != note.timestamp) return false;
@@ -60,7 +58,7 @@ public class Note implements Parcelable {
         return result;
     }
 
-    protected Note(Parcel in) {
+    protected Task(Parcel in) {
         id = in.readInt();
         taskText = in.readString();
         timestamp = in.readLong();
