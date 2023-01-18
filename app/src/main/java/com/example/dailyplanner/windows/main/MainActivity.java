@@ -1,7 +1,8 @@
-package com.example.dailyplanner;
+package com.example.dailyplanner.windows.main;
 
 import android.os.Bundle;
 
+import com.example.dailyplanner.R;
 import com.google.android.material.snackbar.Snackbar;
 
 import androidx.appcompat.app.AppCompatActivity;
