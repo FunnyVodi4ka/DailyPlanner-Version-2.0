@@ -2,6 +2,7 @@ package com.example.dailyplanner.windows.details;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -29,5 +30,20 @@ public class TaskDetailsActivity extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_task_details);
+
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setHomeButtonEnabled(true);
+        setTitle(getString(R.string.task_details_title));
+
+        editText = findViewById(R.id.task_text);
+
+        if (getIntent().hasExtra(EXTRA_TASK)) {
+            task = getIntent().getParcelableExtra(EXTRA_TASK);
+            editText.setText(task.taskText);
+        } else {
+            task = new Task();
+        }
     }
 }

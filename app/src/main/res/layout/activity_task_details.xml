@@ -13,12 +13,15 @@
         app:popupTheme="@style/AppTheme.PopupOverlay" />
 
     <EditText
-        android:id="@+id/text"
+        android:id="@+id/task_text"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="@string/note_text"
-        android:minHeight="200dp"
         android:gravity="top"
-        android:padding="16dp"/>
+        android:hint="@string/task_text"
+        android:minHeight="200dp"
+        android:padding="14dp"
+        android:textColorHint="#757575"
+        android:autofillHints=""
+        android:inputType="text"/>
 
 </LinearLayout>
