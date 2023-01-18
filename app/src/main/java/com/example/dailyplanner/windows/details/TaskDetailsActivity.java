@@ -1,5 +1,6 @@
 package com.example.dailyplanner.windows.details;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -7,8 +8,11 @@ import androidx.appcompat.widget.Toolbar;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.widget.EditText;
 
+import com.example.dailyplanner.App;
 import com.example.dailyplanner.R;
 import com.example.dailyplanner.model.Task;
 
@@ -45,5 +49,34 @@ public class TaskDetailsActivity extends AppCompatActivity {
         } else {
             task = new Task();
         }
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_details, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                finish();
+                break;
+            case R.id.action_save:
+                if (editText.getText().length() > 0) {
+                    task.taskText = editText.getText().toString();
+                    task.done = false;
+                    task.timestamp = System.currentTimeMillis();
+                    if (getIntent().hasExtra(EXTRA_TASK)) {
+                        App.getInstance().getTaskDao().update(task);
+                    } else {
+                        App.getInstance().getTaskDao().insert(task);
+                    }
+                    finish();
+                }
+                break;
+        }
+        return super.onOptionsItemSelected(item);
     }
 }
