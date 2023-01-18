@@ -3,10 +3,15 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/AlexZ/AndroidStudioProjects/DailyPlanner/app/src/main/res/layout/activity_content_main2.xml" value="0.14130434782608695" />
         <entry key="..\:/Users/AlexZ/AndroidStudioProjects/DailyPlanner/app/src/main/res/layout/activity_main.xml" value="0.184375" />
+        <entry key="..\:/Users/AlexZ/AndroidStudioProjects/DailyPlanner/app/src/main/res/layout/activity_note_details.xml" value="0.14130434782608695" />
+        <entry key="..\:/Users/AlexZ/AndroidStudioProjects/DailyPlanner/app/src/main/res/layout/activity_task_details.xml" value="0.14130434782608695" />
         <entry key="..\:/Users/AlexZ/AndroidStudioProjects/DailyPlanner/app/src/main/res/layout/content_main.xml" value="0.14130434782608695" />
         <entry key="..\:/Users/AlexZ/AndroidStudioProjects/DailyPlanner/app/src/main/res/layout/fragment_first.xml" value="0.184375" />
         <entry key="..\:/Users/AlexZ/AndroidStudioProjects/DailyPlanner/app/src/main/res/layout/fragment_second.xml" value="0.184375" />
+        <entry key="..\:/Users/AlexZ/AndroidStudioProjects/DailyPlanner/app/src/main/res/layout/item_note_list.xml" value="0.14130434782608695" />
+        <entry key="..\:/Users/AlexZ/AndroidStudioProjects/DailyPlanner/app/src/main/res/menu/menu_details.xml" value="0.184375" />
         <entry key="..\:/Users/AlexZ/AndroidStudioProjects/DailyPlanner/app/src/main/res/menu/menu_main.xml" value="0.184375" />
       </map>
     </option>
