@@ -18,18 +18,21 @@ import com.example.dailyplanner.R;
 import com.example.dailyplanner.model.Task;
 import com.example.dailyplanner.windows.details.TaskDetailsActivity;
 
+import java.util.List;
+
 public class Adapter extends RecyclerView.Adapter<Adapter.TaskViewHolder> {
 
     private SortedList<Task> sortedList;
 
-    public Adapter(){
+    public Adapter() {
+
         sortedList = new SortedList<>(Task.class, new SortedList.Callback<Task>() {
             @Override
             public int compare(Task o1, Task o2) {
-                if(!o2.done && o1.done){
+                if (!o2.done && o1.done) {
                     return 1;
                 }
-                if(o2.done && !o1.done){
+                if (o2.done && !o1.done) {
                     return -1;
                 }
                 return (int) (o2.timestamp - o1.timestamp);
@@ -84,26 +87,31 @@ public class Adapter extends RecyclerView.Adapter<Adapter.TaskViewHolder> {
         return sortedList.size();
     }
 
+    public void setItems(List<Task> tasks) {
+        sortedList.replaceAll(tasks);
+    }
+
     static class TaskViewHolder extends RecyclerView.ViewHolder {
-        TextView text;
+
+        TextView noteText;
         CheckBox completed;
         View delete;
 
         Task task;
 
-        boolean flagUpdate;
+        boolean silentUpdate;
 
-        public TaskViewHolder(@NonNull View itemView) {
+        public TaskViewHolder(@NonNull final View itemView) {
             super(itemView);
 
-            text = itemView.findViewById(R.id.task_text);
+            noteText = itemView.findViewById(R.id.note_text);
             completed = itemView.findViewById(R.id.completed);
             delete = itemView.findViewById(R.id.delete);
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    TaskDetailsActivity.start((Activity) itemView.getContext(),task);
+                    TaskDetailsActivity.start((Activity) itemView.getContext(), task);
                 }
             });
 
@@ -117,30 +125,32 @@ public class Adapter extends RecyclerView.Adapter<Adapter.TaskViewHolder> {
             completed.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
                 @Override
                 public void onCheckedChanged(CompoundButton compoundButton, boolean checked) {
-                    if(!flagUpdate){
+                    if (!silentUpdate) {
                         task.done = checked;
                         App.getInstance().getTaskDao().update(task);
                     }
-                    updateTaskStatus();
+                    updateStrokeOut();
                 }
             });
+
         }
 
-        public void bind(Task task){
-            this.task = task;
-            text.setText(task.taskText);
-            updateTaskStatus();
+        public void bind(Task _task) {
+            this.task = _task;
 
-            flagUpdate = true;
+            noteText.setText(task.taskText);
+            updateStrokeOut();
+
+            silentUpdate = true;
             completed.setChecked(task.done);
-            flagUpdate = false;
+            silentUpdate = false;
         }
 
-        private void updateTaskStatus() {
-            if(task.done){
-                text.setPaintFlags(text.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
+        private void updateStrokeOut() {
+            if (task.done) {
+                noteText.setPaintFlags(noteText.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
             } else {
-                text.setPaintFlags(text.getPaintFlags() & ~Paint.STRIKE_THRU_TEXT_FLAG);
+                noteText.setPaintFlags(noteText.getPaintFlags() & ~Paint.STRIKE_THRU_TEXT_FLAG);
             }
         }
     }

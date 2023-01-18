@@ -19,7 +19,7 @@ import com.example.dailyplanner.model.Task;
 public class TaskDetailsActivity extends AppCompatActivity {
     public static final String EXTRA_TASK = "TaskDetailsActivity.EXTRA_TASK";
 
-    Task task;
+    private Task task;
     private EditText editText;
 
     public static void start(Activity caller, Task task) {
