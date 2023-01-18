@@ -5,5 +5,6 @@ import androidx.room.Database;
 import com.example.dailyplanner.model.Task;
 
 @Database(entities = {Task.class}, version = 1, exportSchema = false)
-public class ApplicationDatabase {
+public  abstract  class ApplicationDatabase {
+    public abstract TaskDao taskDao();
 }
