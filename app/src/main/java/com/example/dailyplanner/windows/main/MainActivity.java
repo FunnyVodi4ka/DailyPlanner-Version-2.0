@@ -32,14 +32,19 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        //Переменная со списком переменных
         RecyclerView recyclerView = findViewById(R.id.task_list);
+        //Корректное отображение списка сверху вниз через LinearLayoutManager
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this, RecyclerView.VERTICAL, false);
+        //Отрисовка разделителей между элементами списка
         recyclerView.setLayoutManager(linearLayoutManager);
         recyclerView.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL));
 
+        //Объявление адаптера
         final Adapter adapter = new Adapter();
         recyclerView.setAdapter(adapter);
 
+        //Обработка функции клика по кнопке добавления заметки
         FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
