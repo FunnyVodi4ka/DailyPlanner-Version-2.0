@@ -22,6 +22,7 @@ public class TaskDetailsActivity extends AppCompatActivity {
     private Task task;
     private EditText editText;
 
+    //Запуск activity содержимого задачи
     public static void start(Activity caller, Task task) {
         Intent intent = new Intent(caller, TaskDetailsActivity.class);
         if (task != null) {
@@ -30,6 +31,7 @@ public class TaskDetailsActivity extends AppCompatActivity {
         caller.startActivity(intent);
     }
 
+    //Выполнение при создании
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -51,18 +53,22 @@ public class TaskDetailsActivity extends AppCompatActivity {
         }
     }
 
+    //Извлечение меню
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_details, menu);
         return super.onCreateOptionsMenu(menu);
     }
 
+    //Обработка для событий изменения задачи
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {
+            //Отмена
             case android.R.id.home:
                 finish();
                 break;
+                //Сохранение заметки
             case R.id.action_save:
                 if (editText.getText().length() > 0) {
                     task.taskText = editText.getText().toString();

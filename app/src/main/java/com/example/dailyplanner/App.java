@@ -7,6 +7,7 @@ import androidx.room.Room;
 import com.example.dailyplanner.data.ApplicationDatabase;
 import com.example.dailyplanner.data.TaskDao;
 
+//Главный класс, который вызывается при запуске приложения и активизирует работу с базой
 public class App extends Application {
 
     private ApplicationDatabase database;
@@ -14,10 +15,12 @@ public class App extends Application {
 
     private static App instance;
 
+    //Получения контекста
     public static App getInstance() {
         return instance;
     }
 
+    //Функция onCreate() реализует создание\подключение к БД при запуске класса
     @Override
     public void onCreate(){
         super.onCreate();

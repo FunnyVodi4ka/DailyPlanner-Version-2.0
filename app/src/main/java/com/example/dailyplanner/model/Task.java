@@ -7,6 +7,7 @@ import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
+//Создаём модель "Задача", подключаем интерфейс для передачи activity
 @Entity
 public class Task implements Parcelable {
     @PrimaryKey(autoGenerate = true)
@@ -24,6 +25,7 @@ public class Task implements Parcelable {
     public Task() {
     }
 
+    //Стандартная реализация функции Creator()
     public static final Creator<Task> CREATOR = new Creator<Task>() {
         @Override
         public Task createFromParcel(Parcel in) {
@@ -36,6 +38,7 @@ public class Task implements Parcelable {
         }
     };
 
+    //Стандартная реализация функции equals()
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -49,6 +52,7 @@ public class Task implements Parcelable {
         return taskText != null ? taskText.equals(note.taskText) : note.taskText == null;
     }
 
+    //Стандартная реализация функции hashCode()
     @Override
     public int hashCode() {
         int result = id;
@@ -58,6 +62,7 @@ public class Task implements Parcelable {
         return result;
     }
 
+    //Стандартная реализация функции Task() для данных о модели
     protected Task(Parcel in) {
         id = in.readInt();
         taskText = in.readString();
@@ -65,6 +70,7 @@ public class Task implements Parcelable {
         done = in.readByte() != 0;
     }
 
+    //Стандартная реализация функции writeToParcel()
     @Override
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeInt(id);
@@ -73,6 +79,7 @@ public class Task implements Parcelable {
         dest.writeByte((byte) (done ? 1 : 0));
     }
 
+    //Стандартная реализация функции describeContents()
     @Override
     public int describeContents() {
         return 0;

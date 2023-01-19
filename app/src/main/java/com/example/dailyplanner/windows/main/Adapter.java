@@ -27,6 +27,7 @@ public class Adapter extends RecyclerView.Adapter<Adapter.TaskViewHolder> {
     public Adapter() {
 
         sortedList = new SortedList<>(Task.class, new SortedList.Callback<Task>() {
+            //Данная функция необходима для сравнения задач
             @Override
             public int compare(Task o1, Task o2) {
                 if (!o2.done && o1.done) {
@@ -38,31 +39,37 @@ public class Adapter extends RecyclerView.Adapter<Adapter.TaskViewHolder> {
                 return (int) (o2.timestamp - o1.timestamp);
             }
 
+            //Обработка события изменения
             @Override
             public void onChanged(int position, int count) {
                 notifyItemRangeChanged(position, count);
             }
 
+            //Обработка события на отсутсвие изменений в задачи
             @Override
             public boolean areContentsTheSame(Task oldItem, Task newItem) {
                 return oldItem.equals(newItem);
             }
 
+            //Обработка сравнения задачи на случай изменения саму себя
             @Override
             public boolean areItemsTheSame(Task item1, Task item2) {
                 return item1.id == item2.id;
             }
 
+            //Обработка события добавления
             @Override
             public void onInserted(int position, int count) {
                 notifyItemRangeInserted(position, count);
             }
 
+            //Обработка события удаления
             @Override
             public void onRemoved(int position, int count) {
                 notifyItemRangeRemoved(position, count);
             }
 
+            //Обработка события перемещения
             @Override
             public void onMoved(int fromPosition, int toPosition) {
                 notifyItemMoved(fromPosition, toPosition);
